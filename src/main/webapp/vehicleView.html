@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BookAppointment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="vehicleView.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+    <script src="jquery-3.1.0.js"></script>
+    <script src="vehicle.js"></script>
+    <script>
+
+        function addVehicle() {
+            //console.log(document.getElementsByClassName("my-add-vehicle-form").length)
+            document.getElementsByClassName("my-add-vehicle-form")[0].style.visibility = "visible";
+            // do set inner html to whatever you wanna show
+        }
+
+        function bookAppointments() {
+
+            document.getElementsByClassName("my-add-vehicle-form")[0].style.visibility = "hidden";
+            showRecords();
+        }
+
+    </script>
+</head>
+<body onload="checkLogin();">
+
+<div id="my-nav-container-div">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid ">
+            <div class="navbar-header">
+                <a class="navbar-brand">CarServiceAppointment</a>
+            </div>
+
+            <ul class="nav navbar-nav my-navbar-elems">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">AboutUs</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+
+
+            <div class ="navbar-right container-fluid my-logout-btn-div">
+                <button type="button" class="btn btn-primary my-logout-btn" onclick="logout();">
+                    Logout
+                </button>
+            </div>
+
+
+        </div>
+    </nav>
+</div>
+
+<div class="container-fluid my-row-div">
+
+    <div class="row my-col-row">
+        <div class="col-sm-2 my-left-col">
+            <!--<h3>Options</h3>-->
+
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active" style="margin-top: 10%"><a onclick="bookAppointments();">
+                   Book Appointments</a></li>
+                <li class="active" style="margin-top: 10%"><a onclick="showHistory();">
+                    Booked Appointments History</a></li>
+            </ul>
+
+        </div>
+
+        <div class="col-sm-10 my-right-col" >
+            <div id="availableStatus" style="font-size: large;color: red"></div>
+            <div id="showData"></div>
+
+            <form name="vehicleForm" id="vehicleForm"  method="post" class="my-add-vehicle-form">
+                <h2>Vehicle Details</h2>
+                <input type="number" class="form-control" name="vin" placeholder="VIN" required><br>
+                <input type="text" class="form-control" name="model" placeholder="Model" required><br>
+                <input type="text" class="form-control" name="company" placeholder="Company" required><br>
+
+                <input type="date" class="form-control" name="dateOfPurchase" placeholder="Date-Of-Purchase" required><br>
+
+                <button type="submit" id="add-button-id" class="btn btn-primary"
+                        onclick="addRecord();" style="margin-bottom: 2.5%">Save</button>
+            </form>
+        </div>
+    </div>
+
+
+
+</div>
+
+<div id="my-footer-nav-container" style="position: relative">
+    <nav class="navbar navbar-inverse navbar-fixed-bottom"></nav>
+</div>
+
+</body>
+</html>

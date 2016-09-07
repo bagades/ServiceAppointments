@@ -1,0 +1,148 @@
+<html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<script src="functions.js"></script>
+<script src="jquery-3.1.0.js"></script>
+<script>
+    function validateDetails(){
+        if (checkPassword()&&checkPhoneNo()&&checkPostalCode()&&checkValuesInfield()){
+            register();
+            return true;
+        }
+        return false;
+    }
+    function checkValuesInfield(){
+            if(checkName()&&checkEmail()&&checkAddress()&&checkCity()&&checkState()){
+                return true;
+            }
+            return false;
+    }
+    function checkName() {
+        if(document.forms[1].name.value.length == 0 ||document.forms[1].name.value == " "){
+            alert("Enter Name");
+            return false;
+        }
+        return true;
+    }
+    function checkEmail() {
+        if(document.forms[1].email.value.length == 0 ||document.forms[1].email.value == " "){
+            alert("Enter valid mail id");
+            return false;
+        }
+        return true;
+    }
+    function checkAddress() {
+        if(document.forms[1].address.value.length == 0 ||document.forms[1].address.value == " "){
+            alert("Enter valid address");
+            return false;
+        }
+        return true;
+    }
+    function checkCity() {
+        if(document.forms[1].city.value.length == 0 ||document.forms[1].city.value == " "){
+            alert("Enter valid city");
+            return false;
+        }
+        return true;
+    }
+    function checkState() {
+        if(document.forms[1].state.value.length == 0 ||document.forms[1].state.value == " "){
+            alert("Enter valid state");
+            return false;
+        }
+        return true;
+    }
+    function checkPassword () {
+
+        var password = $("#password").val();
+        var confirmPassword = $("#confirmpassword").val();
+        if (password != confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
+        return true;
+    }
+    function checkPhoneNo() {
+        var phoneNo = $("#phoneNo").val();
+        if(phoneNo.length < 10) {
+            alert("Please enter valid Phone no.")
+            return false;
+        }
+        return true;
+    }
+
+    function checkPostalCode() {
+        var postalCode = $("#postalCode").val();
+        if(postalCode.length != 6) {
+            alert("Invalid Postal Code");
+            return false;
+        }
+        return true;
+    }
+</script>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid" >
+        <div class="navbar-header">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="login.html">CarServiceAppointment</a></li>
+                <li><a href="#">AboutUs</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+
+        <form class="navbar-form navbar-right" name="getCustomer" >
+            <div class="form-group">
+                <div style="color: white;" id="loginstatus"></div>
+                <input type="text" class="form-control" name="email" placeholder="UserName">
+                <input type="password" class="form-control" name="password" placeholder="Password">
+            </div>
+            <input type="button" class="btn btn-primary" value="Login" onclick="login();" method="post">Login</input>
+        </form>
+
+    </div>
+</nav>
+
+<div class="container-fluid cf">
+    <div class="row">
+        <div class="col-sm-8 leftside">
+
+            <img class="img-responsive" src="img.png" alt="ser_app" style="width: 1042px; height: 471px;margin-top: 5%">
+
+        </div>
+        <div class="col-sm-4 rightside" ng-controller="register">
+
+            <div class="form-group">
+                <form name="addCustomer" method="post">
+                <h2><br><br>Register</h2>
+                    <div style="color: red;" id="registerStatus"></div>
+                <input type="text" name="name"class="form-control" placeholder="Name" required onblur="checkName();"><br>
+                <input type="email" name="email"class="form-control" placeholder="Email" onblur="checkEmail();" required><br>
+                <input type="password" id="password"name="password"class="form-control" placeholder="Password"  required><br>
+                    <input type="password" id="confirmpassword" name="confirmpassword"class="form-control" placeholder="ConfirmPassword" onblur="checkPassword()" required><br>
+                <input type="number" id="phoneNo" name="phoneNo" class="form-control" placeholder="ContactNumber" minlength="10" onblur="checkPhoneNo()" required><br>
+                <input type="text" name="address" class="form-control" placeholder="Address" onblur="checkAddress();" required><br>
+                <input type="text" name="city" class="form-control" placeholder="City" onblur="checkCity();" required><br>
+                <input type="text" name="state" class="form-control" placeholder="State" onblur="checkState();" required><br>
+                <input type="number" id="postalCode"name="postalCode" class="form-control" placeholder="PostalCode" maxlength="6" minlength="6" onblur="checkPostalCode()" required><br>
+
+                <button id="registerbtn" type="button" class="btn btn-primary" onclick="validateDetails();">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-inverse navbar-fixed-bottom"></nav>
+</body>
+</html>
+
